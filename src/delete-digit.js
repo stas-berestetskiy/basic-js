@@ -11,11 +11,21 @@ const { NotImplementedError } = require('../extensions/index.js');
  * For n = 152, the output should be 52
  *
  */
-function deleteDigit(/* n */) {
-  throw new NotImplementedError('Not implemented');
-  // remove line with error and write your code here
+function deleteDigit(n) {
+	const digits = n.toString().split('');
+
+	// Find the first index where a digit is greater than the next one
+	const indexToDelete = digits.findIndex((digit, i) => digit < digits[i + 1]);
+
+	// Remove the digit at the found index
+	digits.splice(indexToDelete, 1);
+
+	// Join the remaining digits and convert back to a number
+	const result = Number(digits.join(''));
+
+	return result;
 }
 
 module.exports = {
-  deleteDigit
+	deleteDigit,
 };
